@@ -7,47 +7,47 @@
     tools:context=".MenuPage">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/my_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:text="@string/my_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/search_for_jobs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="@string/search_for_jobs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/my_profile" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/saved_jobs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:text="@string/saved_jobs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/search_for_jobs" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:text="@string/logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/saved_jobs" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/welcome_text"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
