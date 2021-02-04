@@ -4,4 +4,5 @@
     <string name="search_for_jobs">Search for Jobs</string>
     <string name="saved_jobs">Saved Jobs</string>
     <string name="logout">Logout</string>
+    <string name="enter_button">Enter</string>
 </resources>
