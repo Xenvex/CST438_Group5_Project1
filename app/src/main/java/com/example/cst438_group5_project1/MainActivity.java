@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void createAccount(View v){
+    public void loginAccount(View v){
         if(v.getId() == R.id.enter_button){
             EditText tempNewUserName;
             EditText tempNewPassWord;
@@ -27,6 +27,5 @@ public class MainActivity extends AppCompatActivity {
             newUserName = tempNewUserName.getText().toString();
             newPassWord = tempNewPassWord.getText().toString();
         }
-
     }
 }

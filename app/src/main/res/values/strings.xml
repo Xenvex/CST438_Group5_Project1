@@ -5,4 +5,7 @@
     <string name="saved_jobs">Saved Jobs</string>
     <string name="logout">Logout</string>
     <string name="enter_button">Enter</string>
+    <string name="enter_username">Enter a username</string>
+    <string name="enter_password">Enter a password</string>
+    <string name="create_button">Create Account</string>
 </resources>
