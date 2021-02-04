@@ -38,7 +38,7 @@ public class MenuPage extends AppCompatActivity {
     }
 
     public void viewProf(){
-//        Intent intent = new Intent(this, MyProfile.class)
+//        Intent intent = new Intent(this, ViewProfile.class)
 //        startActivity(intent);
     }
 
