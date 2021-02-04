@@ -8,20 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class JobListingActivity extends AppCompatActivity {
-
-    ///List<Job> Jobs;
+public class SelectingInterestsActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_listing);
     }
-
-    //Display Jobs based on Interest(Retrieved from JobModel)
-
-
-    //Give an option to return to Search Activity
-    
-
 }
