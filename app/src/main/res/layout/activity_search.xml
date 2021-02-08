@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="top"
+    tools:context=".SearchActivity">
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="300dp"
+        android:hint="Enter a keyword"
+        android:id="@+id/search_entry" />
 
     <Button
-        android:id="@+id/search_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Search"
-        tools:layout_editor_absoluteX="156dp"
-        tools:layout_editor_absoluteY="344dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/search_button" />
+
+
+</LinearLayout>

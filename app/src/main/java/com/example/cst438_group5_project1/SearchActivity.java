@@ -22,16 +22,20 @@ public class SearchActivity extends AppCompatActivity {
 
 
         //Enter in Key word
-        Button searchButton = findViewById(R.id.search_Button);
+        //Hit Button to Search
+        //Re-direct to Job Listing Activity
+        Button searchButton = findViewById(R.id.search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //EditText keyWords = findViewById(R.id.)
+                EditText keyWords = findViewById(R.id.search_entry);
+
+
+
 
             }
 
         });
-        //String keyWord =
 
         //Hit Button to Search
         //Re-direct to Job Listing Activity
