@@ -2,8 +2,10 @@ package com.example.cst438_group5_project1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,6 +14,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button createAccount = (Button) findViewById(R.id.create_account);
+        createAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToCreateAccount();
+            }
+        });
+    }
+
+    public void goToCreateAccount(){
+        Intent newAccount = new Intent(this, CreateNewAccount.class);
+        startActivity(newAccount);
     }
 
     public void loginAccount(View v){
