@@ -43,14 +43,14 @@ public class MenuPage extends AppCompatActivity {
     }
 
     public void viewProf(){
-        Intent intent = new Intent(this, ViewProfile.class)
+        Intent intent = new Intent(this, ViewProfile.class);
         startActivity(intent);
     }
 
-//    public void search(){
+    public void search(){
 //        Intent intent = new Intent(this, JobListingActivity.class)
 //        startActivity(intent);
-//    }
+    }
 
     public void saves(){
 //        Intent intent = new Intent(this, MySaves.class)
@@ -58,7 +58,7 @@ public class MenuPage extends AppCompatActivity {
     }
 
     public void signOut(){
-        Intent intent = new Intent(this, MainActivity.class)
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
