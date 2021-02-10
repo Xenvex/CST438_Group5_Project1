@@ -17,6 +17,11 @@ public class MenuPage extends AppCompatActivity {
 
     TextView welcomeMessage;
 
+//        Get username from login activity
+//        Bundle extras = getIntent().getExtras();
+//        String userName = extras.getStr("username");
+//        welcomeMessage.setText("Welcome, " + );
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,20 +37,20 @@ public class MenuPage extends AppCompatActivity {
         savedJobs.setOnClickListener(v -> saves());
         logout.setOnClickListener(v -> signOut());
 
-//        welcomeMessage.setText("Welcome, " + );
+
 
 
     }
 
     public void viewProf(){
-//        Intent intent = new Intent(this, MyProfile.class)
-//        startActivity(intent);
+        Intent intent = new Intent(this, ViewProfile.class)
+        startActivity(intent);
     }
 
-    public void search(){
-//        Intent intent = new Intent(this, JobSearch.class)
+//    public void search(){
+//        Intent intent = new Intent(this, JobListingActivity.class)
 //        startActivity(intent);
-    }
+//    }
 
     public void saves(){
 //        Intent intent = new Intent(this, MySaves.class)
@@ -53,8 +58,8 @@ public class MenuPage extends AppCompatActivity {
     }
 
     public void signOut(){
-//        Intent intent = new Intent(this, SignOut.class)
-//        startActivity(intent);
+        Intent intent = new Intent(this, MainActivity.class)
+        startActivity(intent);
     }
 
 }
