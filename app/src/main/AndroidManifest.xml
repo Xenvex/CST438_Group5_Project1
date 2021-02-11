@@ -9,10 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CST438_Group5_Project1">
-<<<<<<< HEAD
+      
+        <activity android:name=".CreateNewAccount"></activity>
         <activity android:name=".ViewProfile"></activity>
-=======
->>>>>>> 756358b13229e3c70f393a7e685c5ccf658081f3
         <activity android:name=".MenuPage" />
         <activity android:name=".MainActivity">
             <intent-filter>

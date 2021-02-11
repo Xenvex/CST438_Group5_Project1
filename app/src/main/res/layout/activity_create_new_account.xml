@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +8,8 @@
     android:backgroundTint="#E6DBDB"
     android:orientation="vertical"
     android:padding="30dip">
+
+
 
     <EditText
         android:id="@+id/new_username"
@@ -25,18 +28,8 @@
 
     <Button
         android:id="@+id/enter_button"
+        android:onClick="createAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="loginAccount"
-        android:text="@string/enter_button" />
-
-    <Button
-        android:id="@+id/create_account"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FAFAFA"
-        android:onClick="createNewAccount"
-        android:scaleX="0.5"
-        android:scaleY="0.5"
-        android:text="@string/create_button" />
+        android:text="@string/create" />
 </LinearLayout>
