@@ -20,7 +20,7 @@ public class MenuPage extends AppCompatActivity {
 //        Get username from login activity
 //        Bundle extras = getIntent().getExtras();
 //        String userName = extras.getStr("username");
-//        welcomeMessage.setText("Welcome, " + );
+//        welcomeMessage.setText("Welcome, " + userName);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
