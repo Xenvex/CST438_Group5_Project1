@@ -7,7 +7,7 @@
     tools:context=".ViewProfile">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/goHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/home"
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/usernameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -56,7 +56,7 @@
         tools:layout_editor_absoluteY="124dp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/passwordView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -64,7 +64,7 @@
         tools:layout_editor_absoluteY="184dp" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/interestsView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
