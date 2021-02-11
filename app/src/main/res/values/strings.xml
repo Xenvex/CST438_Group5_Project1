@@ -9,4 +9,8 @@
     <string name="enter_password">Enter your password</string>
     <string name="create_button">Create Account</string>
     <string name="create">Create</string>
+    <string name="home">Home</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="interests">Interests</string>
 </resources>
