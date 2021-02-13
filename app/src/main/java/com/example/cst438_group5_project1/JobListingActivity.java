@@ -1,47 +1,39 @@
 package com.example.cst438_group5_project1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-public class JobListingActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
-    ///List<Job> Jobs;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class JobListingActivity extends AppCompatActivity {
+    private TextView textViewResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("Log Message", "OnCreateSucessful");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_listing);
 
+        textViewResult = findViewById(R.id.text_view_result);
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        //Display the JobListings
+        JsonPlaceHolderAPI jsonPlaceHolderAPI = retrofit.create(JsonPlaceHolderAPI.class);
 
-        //Give an option(button) to return to Search Activity
-        Button return_to_search_button = findViewById(R.id.return_to_search_button);
-        return_to_search_button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-
-            //Transfer back to Search Activity(Using Intent)
-            android.content.Intent intent = new android.content.Intent(JobListingActivity.this, SearchActivity.class);
-            startActivity(intent);
-
-            }
-        });
-
+        //network request
+        Call<List<Post>> call = jsonPlaceHolderAPI.getPosts();
 
     }
-
-    //Display Jobs based on Interest(Retrieved from JobModel)
-
-
-
 }
-

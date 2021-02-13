@@ -14,5 +14,9 @@ public class SelectingInterestsActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_listing);
+
+
+        //Either a drop down menu, text boxes, or a enter text
+        //This answer carries over the JobListingActivity
     }
 }
