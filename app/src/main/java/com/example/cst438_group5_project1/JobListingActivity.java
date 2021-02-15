@@ -26,7 +26,7 @@ public class JobListingActivity extends AppCompatActivity {
         textViewResult = findViewById(R.id.text_view_result);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .baseUrl("https://jobs.github.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -52,10 +52,10 @@ public class JobListingActivity extends AppCompatActivity {
                 for (Post post : posts) {
                     Log.i("Log Message", "Retrieval Successful!");
                     String content = "";
-                    content += "ID: " + post.getId() + "\n";
-                    content += "User ID: " + post.getUserId() + "\n";
+                    //content += "ID: " + post.getId() + "\n";
+                    //content += "User ID: " + post.getUserId() + "\n";
                     content += "Title: " + post.getTitle() + "\n";
-                    content += "Text: " + post.getText() + "\n\n";
+                    //content += "Text: " + post.getText() + "\n\n";
 
                     textViewResult.append(content);
                 }
