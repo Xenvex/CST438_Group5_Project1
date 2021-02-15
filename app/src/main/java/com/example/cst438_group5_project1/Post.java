@@ -4,28 +4,31 @@ import com.google.gson.annotations.SerializedName;
 
 public class Post {
     //Declaring Initial Variables
-    //Replace Variables Later for JobListing Stuff
-
-    //private int userId;
-    //private int id;
     private String title;
 
-    //@SerializedName("body")
-    //private String text;
+    private String company;
 
-    //public int getUserId() {
-    //    return userId;
-    //}
+    private String type;
 
-    //public int getId() {
-    //    return id;
-    //}
+    private String location;
+
 
     public String getTitle() {
         return title;
     }
 
-    //public String getText() {
-    //    return text;
-    //}
+    public String getCompany(){
+        return company;
+    }
+
+    public String getType(){
+        return type;
+    }
+
+    public String getLocation(){
+        return location;
+    }
+
+
+
 }

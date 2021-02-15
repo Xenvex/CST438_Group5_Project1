@@ -52,11 +52,10 @@ public class JobListingActivity extends AppCompatActivity {
                 for (Post post : posts) {
                     Log.i("Log Message", "Retrieval Successful!");
                     String content = "";
-                    //content += "ID: " + post.getId() + "\n";
-                    //content += "User ID: " + post.getUserId() + "\n";
-                    content += "Title: " + post.getTitle() + "\n";
-                    //content += "Text: " + post.getText() + "\n\n";
 
+                    content += "Title: " + post.getTitle() + "\n";
+                    content +=  post.getCompany() + " " + post.getType() + "\n";
+                    content += "Location: " + post.getLocation() + "\n\n";
                     textViewResult.append(content);
                 }
             }
