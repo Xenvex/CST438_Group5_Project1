@@ -12,12 +12,12 @@ public interface JobAppDao {
 
     // SavedJob Queries
     @Insert
-    void saveJob(int userId, String jobId);
+    void saveJob(SavedJob savedJob);
 
     @Query("SELECT * FROM SavedJob WHERE userId=:userId")
     List<SavedJob> getSavedJobs(int userId);
 
     @Delete
-    void removeSavedJob(int userId, String jobId);
+    void removeSavedJob(SavedJob savedJob);
 
 }
