@@ -48,13 +48,13 @@ public class MenuPage extends AppCompatActivity {
     }
 
     public void search(){
-//        Intent intent = new Intent(this, JobListingActivity.class)
-//        startActivity(intent);
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
     }
 
     public void saves(){
-//        Intent intent = new Intent(this, MySaves.class)
-//        startActivity(intent);
+        Intent intent = new Intent(this, SavedJobsActivity.class);
+        startActivity(intent);
     }
 
     public void signOut(){
