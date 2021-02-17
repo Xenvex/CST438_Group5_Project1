@@ -30,11 +30,14 @@ public class ViewProfile extends AppCompatActivity {
         pWord = findViewById(R.id.passwordView);
         interests = findViewById(R.id.interestsView);
 
+        Bundle extras = getIntent().getExtras();
+        String userName = extras.getString("username", "JohnDoe");
+
         home.setOnClickListener(v -> goHome());
-        edit.setOnClickListener(v -> editProfile());
+        edit.setOnClickListener(v -> editProfile(userName));
         delete.setOnClickListener(v -> deleteProfile());
 
-//        uName.setText();
+        uName.setText(userName);
 //        pWord.setText();
 //        interests.setText();
     }
@@ -45,8 +48,9 @@ public class ViewProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void editProfile(){
+    public void editProfile(String uName){
         Intent intent = new Intent(this, EditProfile.class);
+        intent.putExtra("username", uName);
         startActivity(intent);
     }
 
