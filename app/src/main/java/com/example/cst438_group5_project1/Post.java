@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Post {
     //Declaring Initial Variables
+    private String id;
+
     private String title;
 
     private String company;
@@ -12,6 +14,9 @@ public class Post {
 
     private String location;
 
+    public String getId() {
+        return id;
+    }
 
     public String getTitle() {
         return title;
