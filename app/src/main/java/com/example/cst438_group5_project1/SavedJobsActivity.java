@@ -33,7 +33,7 @@ public class SavedJobsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_jobs);
 
-        int currentUserId = getIntent().getIntExtra("userId", 1);
+        long currentUserId = getIntent().getLongExtra("userId", 1);
 
         // The saved jobs as they are stored in the database
         savedJobs = JobAppRoom.getJobAppRoom(this).dao().getSavedJobs(currentUserId);

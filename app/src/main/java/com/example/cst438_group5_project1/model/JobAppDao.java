@@ -10,22 +10,24 @@ import androidx.room.Query;
 @Dao
 public interface JobAppDao {
 
-    // User Queries
+    /*
+    // Account Queries
     @Insert
-    void createUser(User user);
+    long insertAccount(Account account); // returns the account's id
 
-    @Query("SELECT * FROM User WHERE id=:id LIMIT 1")
-    User getUserById(int id);
+    @Query("SELECT * FROM accounts WHERE id=:id LIMIT 1")
+    User getAccount(long id);
 
     @Delete
-    void deleteUser(User user);
+    void deleteAccount(Account account);
+    */
 
     // SavedJob Queries
     @Insert
     void saveJob(SavedJob savedJob);
 
     @Query("SELECT * FROM SavedJob WHERE userId=:userId")
-    List<SavedJob> getSavedJobs(int userId);
+    List<SavedJob> getSavedJobs(long userId);
 
     @Delete
     void removeSavedJob(SavedJob savedJob);

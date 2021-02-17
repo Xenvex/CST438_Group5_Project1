@@ -2,20 +2,19 @@ package com.example.cst438_group5_project1.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 
 @Entity(primaryKeys = {"userId", "jobId"})
 public class SavedJob {
-    final private int userId;
+    final private long userId;
     @NonNull
     final private String jobId;
 
-    public SavedJob(int userId, String jobId) {
+    public SavedJob(long userId, String jobId) {
         this.userId = userId;
         this.jobId = jobId;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 

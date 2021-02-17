@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities={SavedJob.class, User.class}, version=1)
+@Database(entities={SavedJob.class/*, Account.class*/}, version=1)
 public abstract class JobAppRoom extends RoomDatabase {
     private static JobAppRoom instance;
 
