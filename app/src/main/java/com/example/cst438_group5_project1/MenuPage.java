@@ -34,6 +34,7 @@ public class MenuPage extends AppCompatActivity {
         searchJobs = findViewById(R.id.search_for_jobs);
         savedJobs = findViewById(R.id.saved_jobs);
         logout = findViewById(R.id.logout);
+        welcomeMessage = findViewById(R.id.welcome_text);
 
 //      Get username from login activity
         Bundle extras = getIntent().getExtras();
