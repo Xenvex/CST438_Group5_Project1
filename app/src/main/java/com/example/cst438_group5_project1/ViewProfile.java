@@ -8,6 +8,10 @@ import android.os.TestLooperManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.cst438_group5_project1.model.Account;
+import com.example.cst438_group5_project1.model.AccountDatabase;
+
+
 public class ViewProfile extends AppCompatActivity {
 
     Button home;
@@ -17,6 +21,8 @@ public class ViewProfile extends AppCompatActivity {
     TextView uName;
     TextView pWord;
     TextView interests;
+
+    Account viewingAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +36,18 @@ public class ViewProfile extends AppCompatActivity {
         pWord = findViewById(R.id.passwordView);
         interests = findViewById(R.id.interestsView);
 
-        home.setOnClickListener(v -> goHome());
-        edit.setOnClickListener(v -> editProfile());
-        delete.setOnClickListener(v -> deleteProfile());
+        Bundle extras = getIntent().getExtras();
+        String userName = extras.getString("username", "JohnDoe");
 
-//        uName.setText();
-//        pWord.setText();
+        viewingAccount = AccountDatabase.getInstance(this).account().getAccountInfo(userName);
+
+
+        home.setOnClickListener(v -> goHome());
+        edit.setOnClickListener(v -> editProfile(viewingAccount.getUserName()));
+        delete.setOnClickListener(v -> deleteProfile(viewingAccount));
+
+        uName.setText(viewingAccount.getUserName());
+        pWord.setText(viewingAccount.getUserPassword());
 //        interests.setText();
     }
 
@@ -45,12 +57,13 @@ public class ViewProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void editProfile(){
+    public void editProfile(String uName){
         Intent intent = new Intent(this, EditProfile.class);
+        intent.putExtra("username", uName);
         startActivity(intent);
     }
 
-    public void deleteProfile(){
+    public void deleteProfile(Account deletingAccount){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
