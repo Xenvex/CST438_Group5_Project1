@@ -27,7 +27,10 @@ public class SavedJobsActivityTest {
     private JobAppRoom db;
     private JobAppDao dao;
 
-    private List<Post> posts = new ArrayList<>();
+    final private String[] jobIds = {
+            "1a3e40c4-e1d1-43a3-a814-c788287e040e",
+            "79da435a-598c-43e6-a012-bfab1c841065"
+    };
 
     @Before
     public void setup() {
@@ -36,24 +39,6 @@ public class SavedJobsActivityTest {
         // Create in-memory database
         db = Room.inMemoryDatabaseBuilder(context, JobAppRoom.class).build();
         dao = db.dao();
-
-        // Create some post objects
-        Post post = new Post(
-                "1a3e40c4-e1d1-43a3-a814-c788287e040e",
-                "Front & Back End Dev's for E2EE Email Service",
-                "CTemplar",
-                "Part Time",
-                "online"
-        );
-        posts.add(post);
-        post = new Post(
-                "79da435a-598c-43e6-a012-bfab1c841065",
-                "Engineering Manager",
-                "Pixelberry Studios",
-                "Full Time",
-                "Mountain View, CA"
-        );
-        posts.add(post);
     }
 
     @After
@@ -64,9 +49,9 @@ public class SavedJobsActivityTest {
     @Test
     public void retrieveSavedJobsTest() {
         // Add some saved jobs to the database
-        for (Post post : posts) {
+        for (String jobId : jobIds) {
             // Create savedJob object
-            SavedJob savedJob = new SavedJob(1, post.getId());
+            SavedJob savedJob = new SavedJob(1, jobId);
             // Insert into db
             dao.saveJob(savedJob);
         }
@@ -75,15 +60,15 @@ public class SavedJobsActivityTest {
         List<SavedJob> savedJobs = dao.getSavedJobs(1);
 
         // Make sure all of the correct ones have been retrieved
-        for (Post post : posts) {
+        for (String jobId : jobIds) {
             boolean retrieved = false;
             for (SavedJob savedJob : savedJobs) {
-                if (savedJob.getJobId().equals(post.getId())) {
+                if (savedJob.getJobId().equals(jobId)) {
                     retrieved = true;
                     break;
                 }
             }
-            Log.i("retrieveSavedJobsTest", "Retrieved job " + post.getId() + ": " + retrieved);
+            Log.i("retrieveSavedJobsTest", "Retrieved job " + jobId + ": " + retrieved);
             assertTrue(retrieved);
         }
     }

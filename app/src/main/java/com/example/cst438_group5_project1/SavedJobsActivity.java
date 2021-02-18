@@ -2,6 +2,7 @@ package com.example.cst438_group5_project1;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,6 +94,17 @@ public class SavedJobsActivity extends AppCompatActivity {
                     post.getType(),
                     post.getLocation()
             ));
+            
+            rowField.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("SavedJobsActivity", "Clicked button to view job: " + post.getTitle());
+                    // Placeholder code to view this job/post, once that page has been created
+                    // Intent intent = VIEW_JOB_ACTIVITY.getIntent(getApplicationContext());
+                    // intent.putExtra(JOB_TO_VIEW_EXTRA_NAME, post);
+                    // startActivity(intent);
+                }
+            });
 
             return rowView;
         }
