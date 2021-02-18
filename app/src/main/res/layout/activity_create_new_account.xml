@@ -28,7 +28,6 @@
 
     <Button
         android:id="@+id/enter_button"
-        android:onClick="createAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/create" />
