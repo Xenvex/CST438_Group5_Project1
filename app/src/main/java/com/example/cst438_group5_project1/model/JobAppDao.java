@@ -15,7 +15,7 @@ public interface JobAppDao {
     void saveJob(SavedJob savedJob);
 
     @Query("SELECT * FROM SavedJob WHERE userId=:userId")
-    List<SavedJob> getSavedJobs(int userId);
+    List<SavedJob> getSavedJobs(long userId);
 
     @Delete
     void removeSavedJob(SavedJob savedJob);

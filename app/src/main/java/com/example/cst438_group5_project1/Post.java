@@ -1,5 +1,7 @@
 package com.example.cst438_group5_project1;
 
+import androidx.room.Ignore;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Post {
@@ -13,6 +15,15 @@ public class Post {
     private String type;
 
     private String location;
+
+    @Ignore
+    public Post(String id, String title, String company, String type, String location) {
+        this.id = id;
+        this.title = title;
+        this.company = company;
+        this.type = type;
+        this.location = location;
+    }
 
     public String getId() {
         return id;

@@ -21,6 +21,9 @@ public interface AccountDao {
     @Query("SELECT * FROM accounts")
     List<Account> getAll();
 
+    @Query("SELECT * FROM accounts WHERE name=:username")
+    Account getAccountInfo(String username);
+
     @Delete
     void delete(Account account);
 }
