@@ -55,7 +55,7 @@ public class JobListingActivity extends AppCompatActivity {
                     content += "Title: " + post.getTitle() + "\n";
                     content +=  post.getCompany() + " - " + post.getType() + "\n";
                     content += "Location: " + post.getLocation() + "\n\n";
-
+                    post.getId(); //This is so that we can retrieve more data when clicked.
                     textViewResult.append(content);
                 }
             }
