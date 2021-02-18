@@ -75,8 +75,8 @@
 
     <TextView
         android:id="@+id/interestsView"
-        android:layout_width="202dp"
-        android:layout_height="340dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginTop="40dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +99,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="@string/editProf"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="262dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
