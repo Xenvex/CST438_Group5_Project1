@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,49 +26,52 @@ public class CreateNewAccount extends AppCompatActivity {
 
     private Account account;
     private AccountDao accountDAO;
+
     List<Account> accounts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_account);
-        getDataBase();
+        accountDAO = AccountDatabase.getInstance(this).account();
         getUsers();
         createAccount();
     }
 
     private void getUsers(){
+        //int testing = 0;
+//        if(accounts != null) {
+//            Log.i("accountSize", "Account size: \"" + accounts.size());
+//        } else{
+//            Log.i("accountSize", "Account size after: 0");
+//
+//        }
         accounts = accountDAO.getAll();
-    }
-
-    public void getDataBase(){
-        accountDAO = Room.databaseBuilder(this, AccountDatabase.class,AccountDatabase.name)
-                .allowMainThreadQueries()
-                .build()
-                .account();
+        //Log.i("accountSize", "Account size after: \"" + accounts.size());
     }
 
     public void createAccount(){
 
-            EditText tempNewUserName;
-            EditText tempNewPassWord;
-            String newUserName;
-            String newPassWord;
-
-            tempNewUserName = (EditText) findViewById(R.id.new_username);
-            tempNewPassWord = (EditText) findViewById(R.id.new_password);
-
-            newUserName = tempNewUserName.getText().toString();
-            newPassWord = tempNewPassWord.getText().toString();
-
-            Button enter = findViewById(R.id.enter_button);
+            Button enter = findViewById(R.id.create_button);
             enter.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    EditText tempNewUserName;
+                    EditText tempNewPassWord;
+                    String newUserName;
+                    String newPassWord;
+
+                    tempNewUserName = (EditText) findViewById(R.id.new_username);
+                    tempNewPassWord = (EditText) findViewById(R.id.new_password);
+
+                    newUserName = tempNewUserName.getText().toString();
+                    newPassWord = tempNewPassWord.getText().toString();
+
                     //when account is created, it takes you back to the main activity
                     boolean check = false;
-
-                    for(int i = 0; i < accountDAO.getAll().size(); i++){
+                    Log.i("createNewAccountActivity", "size: \"" + accounts.size());
+                    for(int i = 0; i < accounts.size(); i++){
+                        Log.i("createNewAccountActivity", "userName: \"" + accounts.get(i).getUserName());
                         if(accounts.get(i).getUserName().equals(newUserName)){
                             check = true;
                             break;
@@ -75,15 +79,16 @@ public class CreateNewAccount extends AppCompatActivity {
                     }
 
                     //checks for authentication
-//                    if(check){
-//                        Toast.makeText(getApplicationContext(), "Account is already taken", Toast.LENGTH_SHORT).show();
-//                    } else{
-
+                    if(check){
+                        Toast.makeText(getApplicationContext(), "Account is already taken", Toast.LENGTH_SHORT).show();
+                    } else{
                         accountDAO.addAccount(new Account(newUserName, newPassWord));
+                        Log.i("createNewAccountActivity", "Created account with: \"" + newUserName);
+
                         Toast.makeText(getApplicationContext(), "Account Created!!!", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);
-                    //}
+                    }
                 }
             });
 
