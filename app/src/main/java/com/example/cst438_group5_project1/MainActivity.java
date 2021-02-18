@@ -29,25 +29,31 @@ public class MainActivity extends AppCompatActivity {
                 goToCreateAccount();
             }
         });
+
+        Button enterButton = findViewById(R.id.enter_button);
+        enterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText tempNewUserName;
+                EditText tempNewPassWord;
+                String newUserName;
+                String newPassWord;
+
+                tempNewUserName = (EditText) findViewById(R.id.new_username);
+                tempNewPassWord = (EditText) findViewById(R.id.new_password);
+
+                newUserName = tempNewUserName.getText().toString();
+                newPassWord = tempNewPassWord.getText().toString();
+
+                Intent newIntent = new Intent(getApplicationContext(), MenuPage.class);
+                newIntent.putExtra(newUserName, "username");
+                startActivity(newIntent);
+            }
+        });
     }
 
     public void goToCreateAccount(){
         Intent newAccount = new Intent(this, CreateNewAccount.class);
         startActivity(newAccount);
-    }
-
-    public void loginAccount(View v){
-        if(v.getId() == R.id.enter_button){
-            EditText tempNewUserName;
-            EditText tempNewPassWord;
-            String newUserName;
-            String newPassWord;
-
-            tempNewUserName = (EditText) findViewById(R.id.new_username);
-            tempNewPassWord = (EditText) findViewById(R.id.new_password);
-
-            newUserName = tempNewUserName.getText().toString();
-            newPassWord = tempNewPassWord.getText().toString();
-        }
     }
 }
