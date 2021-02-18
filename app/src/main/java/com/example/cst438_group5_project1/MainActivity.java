@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 newPassWord = tempNewPassWord.getText().toString();
 
                 Intent newIntent = new Intent(getApplicationContext(), MenuPage.class);
+                newIntent.putExtra(newUserName, "username");
                 startActivity(newIntent);
             }
         });
