@@ -12,17 +12,25 @@
     tools:context=".JobListingActivity">
 
     <TextView
+        android:id="@+id/JobListings"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:textStyle="bold"
-        android:id="@+id/JobListings" />
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="Job Listings"
+        android:textSize="32dp"
+        android:textStyle="bold" />
+
+    <!-- This is just a separator bar -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
 
     <!--Display the Job Listings -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="569dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp"
         tools:visibility="visible">
@@ -36,8 +44,32 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        
 
     </androidx.core.widget.NestedScrollView>
+
+    <!-- This is just a separator bar -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
+
+    <!-- Integration of the search bar into the JobListing Activity -->
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"
+        android:layout_marginTop="5dp"
+        android:hint="Enter a keyword"
+        android:id="@+id/search_entry" />
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Search" />
 
 
 </LinearLayout>
