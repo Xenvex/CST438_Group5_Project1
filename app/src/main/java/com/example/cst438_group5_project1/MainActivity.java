@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         accountDB = AccountDatabase.getInstance(this);
-        accountDB.populateInitialData();
+        accountDB.populateInitialData(getApplicationContext());
 
         Button createAccount = (Button) findViewById(R.id.create_account);
         createAccount.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 newPassWord = tempNewPassWord.getText().toString();
 
                 Intent newIntent = new Intent(getApplicationContext(), MenuPage.class);
-                newIntent.putExtra(newUserName, "username");
+                newIntent.putExtra("username", newUserName);
                 startActivity(newIntent);
             }
         });
