@@ -27,11 +27,6 @@ public class CreateNewAccount extends AppCompatActivity {
     private AccountDao accountDAO;
     List<Account> accounts;
 
-    private EditText tempNewUserName;
-    private EditText tempNewPassWord;
-    private String newUserName;
-    private String newPassWord;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +49,11 @@ public class CreateNewAccount extends AppCompatActivity {
 
     public void createAccount(){
 
+            EditText tempNewUserName;
+            EditText tempNewPassWord;
+            String newUserName;
+            String newPassWord;
+
             tempNewUserName = (EditText) findViewById(R.id.new_username);
             tempNewPassWord = (EditText) findViewById(R.id.new_password);
 
@@ -65,10 +65,25 @@ public class CreateNewAccount extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //when account is created, it takes you back to the main activity
-                    accountDAO.addAccount(new Account(newUserName, newPassWord));
-                    Toast.makeText(CreateNewAccount.this, "Account Created!!!", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
+                    boolean check = false;
+
+                    for(int i = 0; i < accountDAO.getAll().size(); i++){
+                        if(accounts.get(i).getUserName().equals(newUserName)){
+                            check = true;
+                            break;
+                        }
+                    }
+
+                    //checks for authentication
+//                    if(check){
+//                        Toast.makeText(getApplicationContext(), "Account is already taken", Toast.LENGTH_SHORT).show();
+//                    } else{
+
+                        accountDAO.addAccount(new Account(newUserName, newPassWord));
+                        Toast.makeText(getApplicationContext(), "Account Created!!!", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(i);
+                    //}
                 }
             });
 

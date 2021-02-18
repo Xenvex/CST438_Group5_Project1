@@ -29,16 +29,16 @@ public abstract class AccountDatabase extends RoomDatabase {
         return aInstance;
     }
 
-//    public void populateInitialData(){
-//        if(account().getAll().size() == 0){
-//            runInTransaction(new Runnable() {
-//                @Override
-//                public void run() {
-//                    account().addAccount(new Account("test1", "test1"));
-//                    account().addAccount(new Account("test2","test2"));
-//                    account().addAccount(new Account("test3", "test3"));
-//                }
-//            });
-//        }
-//    }
+    public void populateInitialData(){
+        if(account().getAll().size() == 0){
+            runInTransaction(new Runnable() {
+                @Override
+                public void run() {
+                    account().addAccount(new Account("test1", "test1"));
+                    account().addAccount(new Account("test2","test2"));
+                    account().addAccount(new Account("test3", "test3"));
+                }
+            });
+        }
+    }
 }
