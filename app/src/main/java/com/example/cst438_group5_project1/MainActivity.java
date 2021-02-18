@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         accountDB = AccountDatabase.getInstance(this);
-        accountDB.populateInitialData();
+        //accountDB.populateInitialData();
 
         Button createAccount = (Button) findViewById(R.id.create_account);
         createAccount.setOnClickListener(new View.OnClickListener() {

@@ -17,7 +17,7 @@ public class Account {
     private String userPassword;
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -33,7 +33,7 @@ public class Account {
     }
 
     public String getUserPassword() {
-        return userPassword;
+        return this.userPassword;
     }
 
     public void setUserPassword(String userPassword) {
