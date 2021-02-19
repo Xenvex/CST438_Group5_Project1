@@ -1,18 +1,23 @@
 package com.example.cst438_group5_project1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.TestLooperManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cst438_group5_project1.model.Account;
+import com.example.cst438_group5_project1.model.AccountDao;
 import com.example.cst438_group5_project1.model.AccountDatabase;
 
 
 public class ViewProfile extends AppCompatActivity {
+
+    private AccountDao accountDAO;
 
     Button home;
     Button edit;
@@ -28,6 +33,8 @@ public class ViewProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
+
+        getAccountDatabase();
 
         home = findViewById(R.id.goHome);
         edit = findViewById(R.id.editProfile);
@@ -51,6 +58,13 @@ public class ViewProfile extends AppCompatActivity {
 //        interests.setText();
     }
 
+    public void getAccountDatabase(){
+        accountDAO = Room.databaseBuilder(this, AccountDatabase.class, AccountDatabase.name).
+                fallbackToDestructiveMigration().
+                allowMainThreadQueries()
+                .build()
+                .account();
+    }
 
     public void goHome(String accName){
         Intent intent = new Intent(this, MenuPage.class);
@@ -65,6 +79,9 @@ public class ViewProfile extends AppCompatActivity {
     }
 
     public void deleteProfile(Account deletingAccount){
+
+        AccountDatabase.getInstance(this).account().delete(viewingAccount);
+        Toast.makeText(this, "Account deleted", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

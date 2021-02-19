@@ -39,13 +39,6 @@ public class CreateNewAccount extends AppCompatActivity {
     }
 
     private void getUsers(){
-        //int testing = 0;
-//        if(accounts != null) {
-//            Log.i("accountSize", "Account size: \"" + accounts.size());
-//        } else{
-//            Log.i("accountSize", "Account size after: 0");
-//
-//        }
         accounts = accountDAO.getAll();
         //Log.i("accountSize", "Account size after: \"" + accounts.size());
     }
@@ -69,7 +62,7 @@ public class CreateNewAccount extends AppCompatActivity {
 
                     //when account is created, it takes you back to the main activity
                     boolean check = false;
-                    Log.i("createNewAccountActivity", "size: \"" + accounts.size());
+                    //Log.i("createNewAccountActivity", "size: \"" + accounts.size());
                     for(int i = 0; i < accounts.size(); i++){
                         Log.i("createNewAccountActivity", "userName: \"" + accounts.get(i).getUserName());
                         if(accounts.get(i).getUserName().equals(newUserName)){
