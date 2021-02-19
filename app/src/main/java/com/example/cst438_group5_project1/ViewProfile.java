@@ -7,12 +7,17 @@ import android.os.Bundle;
 import android.os.TestLooperManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cst438_group5_project1.model.Account;
+import com.example.cst438_group5_project1.model.AccountDao;
 import com.example.cst438_group5_project1.model.AccountDatabase;
 
 
 public class ViewProfile extends AppCompatActivity {
+
+    private AccountDao accountDAO = AccountDatabase.getInstance(this).account();;
+    private Account account;
 
     Button home;
     Button edit;
@@ -65,6 +70,9 @@ public class ViewProfile extends AppCompatActivity {
     }
 
     public void deleteProfile(Account deletingAccount){
+
+        accountDAO.delete(accountDAO.getAccountInfo(uName.toString()));
+        Toast.makeText(this, "Account deleted", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
