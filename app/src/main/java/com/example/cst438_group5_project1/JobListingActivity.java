@@ -78,17 +78,22 @@ public class JobListingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //textViewResult.setText("Whoopsie");
+                textViewResult.setText(""); //Clear Previous Search Results
                 EditText keyWords = findViewById(R.id.search_entry_jl);
 
                 String searcher = keyWords.getText().toString();
 
-                Call<List<Post>> call2 = jsonPlaceHolderAPI.getPostbySearch(searcher);
+
+                Call<List<Post>> call2 = jsonPlaceHolderAPI.getPostBySearch(searcher);
 
                 call2.enqueue(new Callback<List<Post>>() {
                     @Override
                     public void onResponse(Call<List<Post>> call2, Response<List<Post>> response) {
-
+                        if (!response.isSuccessful()){
+                            //if not successful, this shows us what went wrong
+                            textViewResult.setText("Code: " + response.code());
+                            return; //Prevents us from doing any operations with a NULL response
+                        }
                     }
 
                     @Override
@@ -98,6 +103,10 @@ public class JobListingActivity extends AppCompatActivity {
                     }
 
                 });
+
+
+
+
 
 
             }
