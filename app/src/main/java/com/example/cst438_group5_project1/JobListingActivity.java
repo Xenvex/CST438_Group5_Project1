@@ -19,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JobListingActivity extends AppCompatActivity {
     private TextView textViewResult;
+    private JsonPlaceHolderAPI jsonPlaceHolderAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class JobListingActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        JsonPlaceHolderAPI jsonPlaceHolderAPI = retrofit.create(JsonPlaceHolderAPI.class);
+        jsonPlaceHolderAPI = retrofit.create(JsonPlaceHolderAPI.class);
 
         //network request
         Call<List<Post>> call = jsonPlaceHolderAPI.getPosts();
@@ -93,6 +94,20 @@ public class JobListingActivity extends AppCompatActivity {
                             //if not successful, this shows us what went wrong
                             textViewResult.setText("Code: " + response.code());
                             return; //Prevents us from doing any operations with a NULL response
+                        }
+
+                        List<Post> posts = response.body();
+                        //Data we want from servers
+                        //Returns a list of jobs from the JSON array
+
+                        for (Post post : posts) {
+                            Log.i("Log Message", "Retrieval Successful!");
+                            String content = "";
+                            content += "Title: " + post.getTitle() + "\n";
+                            content +=  post.getCompany() + " - " + post.getType() + "\n";
+                            content += "Location: " + post.getLocation() + "\n\n";
+                            post.getId(); //This is so that we can retrieve more data when clicked.
+                            textViewResult.append(content);
                         }
                     }
 
