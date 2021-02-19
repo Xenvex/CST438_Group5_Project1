@@ -42,7 +42,7 @@ public class ViewProfile extends AppCompatActivity {
         viewingAccount = AccountDatabase.getInstance(this).account().getAccountInfo(userName);
 
 
-        home.setOnClickListener(v -> goHome());
+        home.setOnClickListener(v -> goHome(viewingAccount.getUserName()));
         edit.setOnClickListener(v -> editProfile(viewingAccount.getUserName()));
         delete.setOnClickListener(v -> deleteProfile(viewingAccount));
 
@@ -52,14 +52,15 @@ public class ViewProfile extends AppCompatActivity {
     }
 
 
-    public void goHome(){
+    public void goHome(String accName){
         Intent intent = new Intent(this, MenuPage.class);
+        intent.putExtra("username", accName);
         startActivity(intent);
     }
 
-    public void editProfile(String uName){
+    public void editProfile(String accName){
         Intent intent = new Intent(this, EditProfile.class);
-        intent.putExtra("username", uName);
+        intent.putExtra("username", accName);
         startActivity(intent);
     }
 

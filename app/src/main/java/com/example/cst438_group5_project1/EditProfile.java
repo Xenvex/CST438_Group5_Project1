@@ -22,7 +22,7 @@ public class EditProfile extends AppCompatActivity {
     Button save;
 
     Account editingAcc;
-    private AccountDao accountDAO;
+    //private AccountDao accountDAO;
 
 
     @Override
@@ -41,7 +41,7 @@ public class EditProfile extends AppCompatActivity {
         String uName = extras.getString("username", "JohnDoe");
 
         editingAcc = AccountDatabase.getInstance(this).account().getAccountInfo(uName);
-        accountDAO = AccountDatabase.getInstance(this).account();
+//        accountDAO = AccountDatabase.getInstance(this).account();
 
 
         userName.setText(editingAcc.getUserName());
@@ -58,10 +58,10 @@ public class EditProfile extends AppCompatActivity {
     }
 
     public void saveEdit(String newUser, String newPass){
-        Log.i("accountcontents", "Account: " + editingAcc);
+        Log.i("accountcontents", "ID: " + editingAcc.getId() + "username: " + editingAcc.getUserName() + " password: " + editingAcc.getUserPassword());
         editingAcc.setUserName(newUser);
         editingAcc.setUserPassword(newPass);
-        accountDAO.update(editingAcc);
+        AccountDatabase.getInstance(this).account().update(editingAcc);
         Intent intent = new Intent(this, ViewProfile.class);
         intent.putExtra("username", newUser);
         startActivity(intent);
