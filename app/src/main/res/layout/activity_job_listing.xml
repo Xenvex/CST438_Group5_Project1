@@ -46,6 +46,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
+
+
     </androidx.core.widget.NestedScrollView>
 
     <!-- This is just a separator bar -->
@@ -62,10 +64,10 @@
         android:background="#ffffff"
         android:layout_marginTop="5dp"
         android:hint="Enter a keyword"
-        android:id="@+id/search_entry" />
+        android:id="@+id/search_entry_jl" />
 
     <Button
-        android:id="@+id/search_button"
+        android:id="@+id/search_button_jl"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

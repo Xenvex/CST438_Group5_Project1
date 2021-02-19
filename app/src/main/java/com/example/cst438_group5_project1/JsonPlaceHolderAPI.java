@@ -5,6 +5,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface JsonPlaceHolderAPI {
 
@@ -13,4 +14,7 @@ public interface JsonPlaceHolderAPI {
 
     @GET("positions/{jobId}.json")
     Call<Post> getPostById(@Path("jobId") String jobId);
+
+    @GET("positions.json?search={node}")
+    Call<List<Post>> getPostBySearch(@Path("node") String title);
 }
