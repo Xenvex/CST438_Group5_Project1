@@ -17,8 +17,6 @@ import com.example.cst438_group5_project1.model.AccountDatabase;
 
 public class ViewProfile extends AppCompatActivity {
 
-    private AccountDao accountDAO;
-
     Button home;
     Button edit;
     Button delete;
@@ -33,8 +31,6 @@ public class ViewProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
-
-        getAccountDatabase();
 
         home = findViewById(R.id.goHome);
         edit = findViewById(R.id.editProfile);
@@ -51,19 +47,11 @@ public class ViewProfile extends AppCompatActivity {
 
         home.setOnClickListener(v -> goHome(viewingAccount.getUserName()));
         edit.setOnClickListener(v -> editProfile(viewingAccount.getUserName()));
-        delete.setOnClickListener(v -> deleteProfile(viewingAccount));
+        delete.setOnClickListener(v -> deleteProfile());
 
         uName.setText(viewingAccount.getUserName());
         pWord.setText(viewingAccount.getUserPassword());
 //        interests.setText();
-    }
-
-    public void getAccountDatabase(){
-        accountDAO = Room.databaseBuilder(this, AccountDatabase.class, AccountDatabase.name).
-                fallbackToDestructiveMigration().
-                allowMainThreadQueries()
-                .build()
-                .account();
     }
 
     public void goHome(String accName){
@@ -78,7 +66,7 @@ public class ViewProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void deleteProfile(Account deletingAccount){
+    public void deleteProfile(){
 
         AccountDatabase.getInstance(this).account().delete(viewingAccount);
         Toast.makeText(this, "Account deleted", Toast.LENGTH_SHORT).show();
