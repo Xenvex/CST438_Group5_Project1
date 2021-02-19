@@ -2,6 +2,9 @@ package com.example.cst438_group5_project1;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,6 +70,38 @@ public class JobListingActivity extends AppCompatActivity {
                 Log.i("Log Message", "Response Failed");
                 textViewResult.setText(t.getMessage());
             }
+        });
+
+
+        Button searchButton = findViewById(R.id.search_button_jl);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //textViewResult.setText("Whoopsie");
+                EditText keyWords = findViewById(R.id.search_entry_jl);
+
+                String searcher = keyWords.getText().toString();
+
+                Call<List<Post>> call2 = jsonPlaceHolderAPI.getPostbySearch(searcher);
+
+                call2.enqueue(new Callback<List<Post>>() {
+                    @Override
+                    public void onResponse(Call<List<Post>> call2, Response<List<Post>> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Post>> call2, Throwable t) {
+                        Log.i("Log Message", "Response Failed");
+                        textViewResult.setText(t.getMessage());
+                    }
+
+                });
+
+
+            }
+
         });
 
     }
