@@ -16,6 +16,8 @@ public class Post {
 
     private String location;
 
+    private String description;
+
     @Ignore
     public Post(String id, String title, String company, String type, String location) {
         this.id = id;
@@ -43,6 +45,10 @@ public class Post {
 
     public String getLocation(){
         return location;
+    }
+
+    public String getDescription(){
+        return description;
     }
 
 
