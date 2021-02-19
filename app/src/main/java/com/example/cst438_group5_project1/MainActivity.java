@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.cst438_group5_project1.model.Account;
 import com.example.cst438_group5_project1.model.AccountDao;
 import com.example.cst438_group5_project1.model.AccountDatabase;
+import com.example.cst438_group5_project1.model.JobAppRoom;
 
 import java.util.List;
 
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         accountDB = AccountDatabase.getInstance(this);
         accountDB.populateInitialData(getApplicationContext());
         getUsers();
+
+        // Load test data into the database if empty
+        JobAppRoom.getJobAppRoom(this).loadTestData(this);
 
         Button createAccount = (Button) findViewById(R.id.create_account);
         createAccount.setOnClickListener(new View.OnClickListener() {
