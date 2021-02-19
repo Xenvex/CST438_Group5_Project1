@@ -47,15 +47,15 @@ public class JobListingActivity extends AppCompatActivity {
 
                 List<Post> posts = response.body();
                 //Data we want from servers
-                //Returns a list of posts from the JSON array
+                //Returns a list of jobs from the JSON array
 
                 for (Post post : posts) {
                     Log.i("Log Message", "Retrieval Successful!");
                     String content = "";
-
                     content += "Title: " + post.getTitle() + "\n";
-                    content +=  post.getCompany() + " " + post.getType() + "\n";
+                    content +=  post.getCompany() + " - " + post.getType() + "\n";
                     content += "Location: " + post.getLocation() + "\n\n";
+                    post.getId(); //This is so that we can retrieve more data when clicked.
                     textViewResult.append(content);
                 }
             }
