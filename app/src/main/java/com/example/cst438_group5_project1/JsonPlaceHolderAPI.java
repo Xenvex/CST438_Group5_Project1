@@ -15,6 +15,7 @@ public interface JsonPlaceHolderAPI {
     @GET("positions/{jobId}.json")
     Call<Post> getPostById(@Path("jobId") String jobId);
 
-    @GET("positions.json?search={node}")
-    Call<List<Post>> getPostBySearch(@Path("node") String title);
+    //Requesting information based on Search Information
+    @GET("positions.json")
+    Call<List<Post>> getPostBySearch(@Query("description") String description);
 }
