@@ -31,14 +31,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SavedJobsActivity extends AppCompatActivity {
 
     List<SavedJob> savedJobs;
-    List<Post> posts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_jobs);
 
-        long currentUserId = getIntent().getLongExtra("userId", 1);
+        int currentUserId = getIntent().getIntExtra("userId", 1);
 
         // The saved jobs as they are stored in the database
         savedJobs = JobAppRoom.getJobAppRoom(this).dao().getSavedJobs(currentUserId);
@@ -57,8 +56,10 @@ public class SavedJobsActivity extends AppCompatActivity {
             ((LinearLayout)findViewById(R.id.saved_jobs_layout)).addView(noSavedJobsMessage);
         }
 
-        // The jobs will be added to this list after receiving a response from the API
-        posts = new ArrayList<>();
+        // Set up array adapter for displaying saved jobs
+        ListView savedJobsView = findViewById(R.id.saved_jobs_list);
+        SavedJobsListAdapter listAdapter = new SavedJobsListAdapter(this);
+        savedJobsView.setAdapter(listAdapter);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jobs.github.com/")
@@ -67,6 +68,7 @@ public class SavedJobsActivity extends AppCompatActivity {
 
         JsonPlaceHolderAPI jsonPlaceHolderAPI = retrofit.create(JsonPlaceHolderAPI.class);
 
+        // Add saved jobs asynchronously as they are retrieved from the API
         for (SavedJob savedJob : savedJobs) {
             Call<Post> call = jsonPlaceHolderAPI.getPostById(savedJob.getJobId());
 
@@ -74,28 +76,26 @@ public class SavedJobsActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Post> call, Response<Post> response) {
                     if (!response.isSuccessful()) {
+                        Log.i("SavedJobsActivity", "Request for post " + savedJob.getJobId() + " NOT SUCCESSFUL");
                         return;
                     }
 
                     Post post = response.body();
-                    posts.add(post);
+                    listAdapter.add(post);
                 }
 
                 @Override
                 public void onFailure(Call<Post> call, Throwable t) {
-
+                    Log.i("SavedJobsActivity", "Request for post " + savedJob.getJobId() + " FAILED");
                 }
             });
         }
-
-        ListView savedJobsView = findViewById(R.id.saved_jobs_list);
-        savedJobsView.setAdapter(new SavedJobsListAdapter(this, posts));
     }
 
     public class SavedJobsListAdapter extends ArrayAdapter<Post> {
 
-        public SavedJobsListAdapter (Activity context, List<Post> posts) {
-            super(context, R.layout.row_layout, posts);
+        public SavedJobsListAdapter (Activity context) {
+            super(context, R.layout.row_layout);
         }
 
         @Override
@@ -104,24 +104,21 @@ public class SavedJobsActivity extends AppCompatActivity {
             View rowView = inflater.inflate(R.layout.row_layout, null, true);
             TextView rowField = rowView.findViewById(R.id.row_id);
 
-            Post post = posts.get(position);
+            Post post = getItem(position);
             rowField.setText(String.format(
-                    "Title: %s\n%s %s\nLocation: %s\n\n",
+                    "Title: %s\n%s %s\nLocation: %s",
                     post.getTitle(),
                     post.getCompany(),
                     post.getType(),
                     post.getLocation()
             ));
             
-            rowField.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.i("SavedJobsActivity", "Clicked button to view job: " + post.getTitle());
-                    // Placeholder code to view this job/post, once that page has been created
-                    // Intent intent = VIEW_JOB_ACTIVITY.getIntent(getApplicationContext());
-                    // intent.putExtra(JOB_TO_VIEW_EXTRA_NAME, post);
-                    // startActivity(intent);
-                }
+            rowField.setOnClickListener(v -> {
+                Log.i("SavedJobsActivity", "Clicked button to view job: " + post.getTitle());
+                // Placeholder code to view this job/post, once that page has been created
+                // Intent intent = VIEW_JOB_ACTIVITY.getIntent(getApplicationContext());
+                // intent.putExtra(JOB_TO_VIEW_EXTRA_NAME, post);
+                // startActivity(intent);
             });
 
             return rowView;
