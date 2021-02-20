@@ -1,6 +1,7 @@
 package com.example.cst438_group5_project1;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -58,7 +59,9 @@ public class JobListingActivity extends AppCompatActivity {
                     String content = "";
                     content += "Title: " + post.getTitle() + "\n";
                     content +=  post.getCompany() + " - " + post.getType() + "\n";
-                    content += "Location: " + post.getLocation() + "\n\n";
+                    content += "Location: " + post.getLocation() + "\n";
+                    content += "Description: " + Html.fromHtml(post.getDescription()) + "\n";
+                    content += "=====================================================\n";
                     post.getId(); //This is so that we can retrieve more data when clicked.
                     textViewResult.append(content);
                 }
@@ -105,7 +108,9 @@ public class JobListingActivity extends AppCompatActivity {
                             String content = "";
                             content += "Title: " + post.getTitle() + "\n";
                             content +=  post.getCompany() + " - " + post.getType() + "\n";
-                            content += "Location: " + post.getLocation() + "\n\n";
+                            content += "Location: " + post.getLocation() + "\n";
+                            content += "Description: " + Html.fromHtml(post.getDescription()) + "\n";
+                            content += "=====================================================\n";
                             post.getId(); //This is so that we can retrieve more data when clicked.
                             textViewResult.append(content);
                         }
