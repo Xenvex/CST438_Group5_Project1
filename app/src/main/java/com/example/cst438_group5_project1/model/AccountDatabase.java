@@ -41,22 +41,22 @@ public abstract class AccountDatabase extends RoomDatabase {
     }
 
     public void populateInitialData(Context context){
-            runInTransaction(new Runnable() {
+        runInTransaction(new Runnable() {
 
-                @Override
-                public void run() {
-                    AccountDao DAO = getInstance(context).account();
-                    List<Account> existingAccounts = DAO.getAll();
-                    if (existingAccounts.size() == 0) {
-                        DAO.addAccount(new Account("test1", "test1"));
-                        DAO.addAccount(new Account("test2", "test2"));
-                        DAO.addAccount(new Account("test3", "test3"));
-                        //Log.i("PopulateInitialData", "Running");
-                    }
-                    else {
-                        removeDuplicateAccounts(context);
-                    }
+            @Override
+            public void run() {
+                AccountDao DAO = getInstance(context).account();
+                List<Account> existingAccounts = DAO.getAll();
+                if (existingAccounts.size() == 0) {
+                    DAO.addAccount(new Account("test1", "test1"));
+                    DAO.addAccount(new Account("test2", "test2"));
+                    DAO.addAccount(new Account("test3", "test3"));
+                    //Log.i("PopulateInitialData", "Running");
                 }
-            });
+                else {
+                    removeDuplicateAccounts(context);
+                }
+            }
+        });
     }
 }
