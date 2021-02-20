@@ -73,7 +73,7 @@ public class JobListingActivity extends AppCompatActivity {
             }
         });
 
-
+        //Search Function(Updates the Job List based on search Entry)
         Button searchButton = findViewById(R.id.search_button_jl);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
