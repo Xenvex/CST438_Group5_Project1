@@ -7,6 +7,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Database(entities = {Account.class}, version = 2, exportSchema = false)
@@ -30,18 +31,32 @@ public abstract class AccountDatabase extends RoomDatabase {
         return aInstance;
     }
 
+    public void removeDuplicateAccounts(Context context) {
+        AccountDao dao = getInstance(context).account();
+        HashSet<String> takenUsernames = new HashSet<>();
+        for (Account account : dao.getAll()) {
+            if (takenUsernames.contains(account.getUserName())) dao.delete(account);
+            else takenUsernames.add(account.getUserName());
+        }
+    }
+
     public void populateInitialData(Context context){
             runInTransaction(new Runnable() {
 
                 @Override
                 public void run() {
                     AccountDao DAO = getInstance(context).account();
-                    DAO.addAccount(new Account("test1", "test1"));
-                    DAO.addAccount(new Account("test2","test2"));
-                    DAO.addAccount(new Account("test3", "test3"));
-                    //Log.i("PopulateInitialData", "Running");
+                    List<Account> existingAccounts = DAO.getAll();
+                    if (existingAccounts.size() == 0) {
+                        DAO.addAccount(new Account("test1", "test1"));
+                        DAO.addAccount(new Account("test2", "test2"));
+                        DAO.addAccount(new Account("test3", "test3"));
+                        //Log.i("PopulateInitialData", "Running");
+                    }
+                    else {
+                        removeDuplicateAccounts(context);
+                    }
                 }
             });
-
     }
 }

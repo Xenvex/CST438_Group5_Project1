@@ -3,10 +3,12 @@ package com.example.cst438_group5_project1;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,6 +19,8 @@ import java.util.List;
 
 import com.example.cst438_group5_project1.model.JobAppRoom;
 import com.example.cst438_group5_project1.model.SavedJob;
+
+import org.w3c.dom.Text;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +42,20 @@ public class SavedJobsActivity extends AppCompatActivity {
 
         // The saved jobs as they are stored in the database
         savedJobs = JobAppRoom.getJobAppRoom(this).dao().getSavedJobs(currentUserId);
+
+        if (savedJobs.size() == 0) {
+            TextView noSavedJobsMessage = new TextView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(0, 100, 0, 0);
+            noSavedJobsMessage.setLayoutParams(params);
+            noSavedJobsMessage.setText("You have no saved jobs");
+            noSavedJobsMessage.setTextSize(20);
+            noSavedJobsMessage.setGravity(Gravity.CENTER);
+            ((LinearLayout)findViewById(R.id.saved_jobs_layout)).addView(noSavedJobsMessage);
+        }
 
         // The jobs will be added to this list after receiving a response from the API
         posts = new ArrayList<>();

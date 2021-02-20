@@ -6,7 +6,9 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities={SavedJob.class/*, Account.class*/}, version=1)
+import java.util.List;
+
+@Database(entities={SavedJob.class}, version=1)
 public abstract class JobAppRoom extends RoomDatabase {
     private static JobAppRoom instance;
 
@@ -23,4 +25,14 @@ public abstract class JobAppRoom extends RoomDatabase {
         return instance;
     }
 
+    public void loadTestData(Context context) {
+        JobAppDao dao = JobAppRoom.getJobAppRoom(context).dao();
+        List<SavedJob> savedJobs = dao.getSavedJobs(1);
+        if (savedJobs.size() == 0) {
+            SavedJob jobA = new SavedJob(1, "1a3e40c4-e1d1-43a3-a814-c788287e040e");
+            dao.saveJob(jobA);
+            SavedJob jobB = new SavedJob(1, "79da435a-598c-43e6-a012-bfab1c841065");
+            dao.saveJob(jobB);
+        }
+    }
 }
